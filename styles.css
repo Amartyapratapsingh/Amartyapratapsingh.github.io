@@ -139,9 +139,16 @@ h1, h2, h3 {
 
 /* Projects section */
 .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+}
+
+.project {
+    flex: 0 0 300px;
+    margin-right: 2rem;
+    scroll-snap-align: start;
 }
 
 .project {
@@ -284,3 +291,81 @@ nav ul li a.active {
 }
 
 /* Add any additional styles you need to make the new sections look good */
+
+/* Custom cursor */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    transition: 0.1s;
+    z-index: 9999;
+}
+
+/* Navigation hover effect */
+nav ul li a {
+    position: relative;
+    overflow: hidden;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #3498db;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    transform: translateX(0);
+}
+
+/* Animate sections on scroll */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Update dark mode toggle */
+#dark-mode-toggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: var(--header-bg);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#dark-mode-toggle::before {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #f1c40f;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+}
+
+.dark-mode #dark-mode-toggle::before {
+    transform: translateX(30px);
+    background-color: #34495e;
+}
+
+#dark-mode-toggle i {
+    display: none;
+}

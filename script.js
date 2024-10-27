@@ -4,6 +4,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
 
+    // Custom cursor
+    const cursor = document.querySelector('.cursor');
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // Animate sections on scroll
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => section.classList.add('fade-in'));
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
     // Dark mode toggle
     darkModeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
@@ -176,4 +204,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call the function on page load
     updateActiveNavItem();
+
+    // Horizontal scrolling for projects
+    const projectGrid = document.querySelector('.project-grid');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    projectGrid.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - projectGrid.offsetLeft;
+        scrollLeft = projectGrid.scrollLeft;
+    });
+
+    projectGrid.addEventListener('mouseleave', () => {
+        isDown = false;
+    });
+
+    projectGrid.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+
+    projectGrid.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - projectGrid.offsetLeft;
+        const walk = (x - startX) * 2;
+        projectGrid.scrollLeft = scrollLeft - walk;
+    });
 });
