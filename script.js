@@ -4,34 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
 
-    // Custom cursor
-    const cursor = document.querySelector('.cursor');
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-
-    // Animate sections on scroll
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => section.classList.add('fade-in'));
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    sections.forEach(section => observer.observe(section));
-
     // Dark mode toggle
     darkModeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
@@ -82,44 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 top: offsetPosition,
                 behavior: 'smooth'
             });
-        });
-    });
-
-    // Add this function to your existing JavaScript file
-
-    function smoothScroll(target, duration) {
-        var target = document.querySelector(target);
-        var targetPosition = target.getBoundingClientRect().top;
-        var startPosition = window.pageYOffset;
-        var distance = targetPosition - startPosition;
-        var startTime = null;
-
-        function animation(currentTime) {
-            if (startTime === null) startTime = currentTime;
-            var timeElapsed = currentTime - startTime;
-            var run = ease(timeElapsed, startPosition, distance, duration);
-            window.scrollTo(0, run);
-            if (timeElapsed < duration) requestAnimationFrame(animation);
-        }
-
-        function ease(t, b, c, d) {
-            t /= d / 2;
-            if (t < 1) return c / 2 * t * t + b;
-            t--;
-            return -c / 2 * (t * (t - 2) - 1) + b;
-        }
-
-        requestAnimationFrame(animation);
-    }
-
-    // Add event listeners for smooth scrolling
-    var links = document.querySelectorAll("a[href^='#']");
-
-    links.forEach(function(link) {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            var target = this.getAttribute('href');
-            smoothScroll(target, 1000);
         });
     });
 
@@ -204,32 +138,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call the function on page load
     updateActiveNavItem();
-
-    // Horizontal scrolling for projects
-    const projectGrid = document.querySelector('.project-grid');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    projectGrid.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - projectGrid.offsetLeft;
-        scrollLeft = projectGrid.scrollLeft;
-    });
-
-    projectGrid.addEventListener('mouseleave', () => {
-        isDown = false;
-    });
-
-    projectGrid.addEventListener('mouseup', () => {
-        isDown = false;
-    });
-
-    projectGrid.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - projectGrid.offsetLeft;
-        const walk = (x - startX) * 2;
-        projectGrid.scrollLeft = scrollLeft - walk;
-    });
 });
