@@ -1,6 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
     const navLinks = document.querySelectorAll('nav a');
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    // Dark mode toggle
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        updateDarkModeIcon();
+        saveDarkModePreference();
+    });
+
+    // Function to update dark mode icon
+    function updateDarkModeIcon() {
+        const icon = darkModeToggle.querySelector('i');
+        if (body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    }
+
+    // Function to save dark mode preference
+    function saveDarkModePreference() {
+        localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+    }
+
+    // Function to load dark mode preference
+    function loadDarkModePreference() {
+        const darkMode = localStorage.getItem('darkMode');
+        if (darkMode === 'true') {
+            body.classList.add('dark-mode');
+            updateDarkModeIcon();
+        }
+    }
+
+    // Load dark mode preference on page load
+    loadDarkModePreference();
 
     // Smooth scrolling for navigation links
     navLinks.forEach(link => {
