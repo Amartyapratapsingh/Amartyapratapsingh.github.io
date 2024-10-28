@@ -367,3 +367,63 @@ footer {
 }
 
 /* Add any additional styles you need to make the new sections look good */
+
+/* Add these styles to your existing CSS file */
+
+#project-details {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+#project-details h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-info {
+    margin-bottom: 2rem;
+}
+
+.project-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.project-info li {
+    margin-bottom: 0.5rem;
+}
+
+.screenshots {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.screenshots img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .screenshots {
+        grid-template-columns: 1fr;
+    }
+}

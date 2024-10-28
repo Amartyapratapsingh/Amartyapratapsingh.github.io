@@ -147,4 +147,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         }, 3000);
     }
+
+    // Add this function to your existing JavaScript file
+    function initProjectPage() {
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // Dark mode toggle
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            updateDarkModeIcon();
+            saveDarkModePreference();
+        });
+
+        // Load dark mode preference on page load
+        loadDarkModePreference();
+    }
+
+    // Call this function when the DOM is loaded
+    document.addEventListener('DOMContentLoaded', initProjectPage);
 });
