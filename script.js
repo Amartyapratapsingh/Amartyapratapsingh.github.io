@@ -96,22 +96,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Form submission
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        const name = contactForm.elements['name'].value;
-        const email = contactForm.elements['email'].value;
-        const message = contactForm.elements['message'].value;
-
-        // Here you would typically send the form data to a server
-        // For this example, we'll just log it to the console
-        console.log('Form submitted:', { name, email, message });
-
-        // Clear the form
-        contactForm.reset();
-
-        // Show a success message
-        showNotification('Thank you for your message! I will get back to you soon.');
+        const formData = new FormData(contactForm);
+        
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                // Clear the form
+                contactForm.reset();
+                // Show a success message
+                showNotification('Thank you for your message! I will get back to you soon.');
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showNotification('Oops! There was a problem sending your message. Please try again later.');
+        }
     });
 
     // Notification function
