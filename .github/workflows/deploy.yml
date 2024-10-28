@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Set this to your default branch name
+      - main
 
 jobs:
   deploy:
@@ -14,5 +14,5 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        publish_dir: .  # Set this to the directory containing your site files
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: .
