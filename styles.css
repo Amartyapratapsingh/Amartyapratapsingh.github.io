@@ -28,20 +28,6 @@ header {
     padding: 0.5rem 2rem;
 }
 
-.logo-container {
-    flex: 0 0 auto;
-}
-
-.logo {
-    height: 40px;
-    width: auto;
-    transition: transform 0.3s ease;
-}
-
-.logo:hover {
-    transform: scale(1.1);
-}
-
 nav {
     flex: 1;
     display: flex;
@@ -465,22 +451,67 @@ footer {
     }
 }
 
-/* Alternative text-based logo (use if you don't have a logo image) */
-.logo-container a {
-    text-decoration: none;
-    color: var(--header-text);
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-family: 'Arial', sans-serif;
+/* Free section */
+#free {
+    background-color: var(--bg-color);
+    padding: 2rem 0;
 }
 
-.logo-container a span {
+.free-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.free-item {
+    background-color: var(--project-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px var(--project-shadow);
+}
+
+.free-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px var(--project-shadow);
+}
+
+.free-item i {
+    font-size: 2.5rem;
     color: #3498db;
+    margin-bottom: 1rem;
 }
 
-/* Add this to your HTML instead of the img tag if using text logo */
-<div class="logo-container">
-    <a href="index.html">
-        APS<span>Games</span>
-    </a>
-</div>
+.free-item h3 {
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+}
+
+.free-item p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.free-item .btn {
+    display: inline-block;
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.free-item .btn:hover {
+    background-color: #2980b9;
+}
+
+/* Update responsive styles */
+@media (max-width: 768px) {
+    .free-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+}
