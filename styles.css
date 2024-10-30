@@ -515,3 +515,73 @@ footer {
         padding: 0 1rem;
     }
 }
+
+/* Tutorial page styles */
+.tutorial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tutorial-item {
+    background-color: var(--project-bg);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--project-shadow);
+    transition: transform 0.3s ease;
+}
+
+.tutorial-item:hover {
+    transform: translateY(-5px);
+}
+
+.tutorial-item img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+/* Assets page styles */
+.assets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.asset-item {
+    background-color: var(--project-bg);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--project-shadow);
+    transition: transform 0.3s ease;
+}
+
+.asset-item:hover {
+    transform: translateY(-5px);
+}
+
+.asset-item img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.asset-details {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.asset-details li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.asset-details i {
+    color: #3498db;
+}
