@@ -585,3 +585,72 @@ footer {
 .asset-details i {
     color: #3498db;
 }
+
+/* Free Games page styles */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.game-item {
+    background-color: var(--project-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--project-shadow);
+    transition: transform 0.3s ease;
+}
+
+.game-item:hover {
+    transform: translateY(-5px);
+}
+
+.game-item img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.game-details {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 5px;
+}
+
+.game-details p {
+    margin-bottom: 0.5rem;
+}
+
+.game-description {
+    margin: 1rem 0;
+    color: var(--text-color);
+}
+
+.game-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid #3498db;
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-actions {
+        flex-direction: column;
+    }
+}
