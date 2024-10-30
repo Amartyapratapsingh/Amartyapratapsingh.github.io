@@ -22,6 +22,30 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+}
+
+.logo-container {
+    flex: 0 0 auto;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul {
@@ -241,6 +265,19 @@ footer {
     .project-grid {
         grid-template-columns: 1fr;
     }
+
+    header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .logo-container {
+        margin-bottom: 1rem;
+    }
+
+    nav {
+        width: 100%;
+    }
 }
 
 /* Add these variables at the top of your CSS file */
@@ -427,3 +464,23 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* Alternative text-based logo (use if you don't have a logo image) */
+.logo-container a {
+    text-decoration: none;
+    color: var(--header-text);
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+}
+
+.logo-container a span {
+    color: #3498db;
+}
+
+/* Add this to your HTML instead of the img tag if using text logo */
+<div class="logo-container">
+    <a href="index.html">
+        APS<span>Games</span>
+    </a>
+</div>
