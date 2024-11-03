@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
-    const navLinks = document.querySelectorAll('nav a');
+    const menuLinks = document.querySelectorAll('nav a');
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('nav ul');
 
     // Dark mode toggle
     darkModeToggle.addEventListener('click', () => {
@@ -40,8 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load dark mode preference on page load
     loadDarkModePreference();
 
+    // Toggle menu
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('nav') && !e.target.closest('.menu-toggle')) {
+            navMenu.classList.remove('active');
+        }
+    });
+
     // Smooth scrolling for navigation links
-    navLinks.forEach(link => {
+    menuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');

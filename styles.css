@@ -17,15 +17,15 @@ body {
 header {
     background-color: var(--header-bg);
     color: var(--header-text);
-    padding: 1rem 0;
+    padding: 1rem;
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 2rem;
 }
 
 nav {
@@ -38,6 +38,8 @@ nav ul {
     display: flex;
     justify-content: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -49,6 +51,7 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
+    padding: 0.5rem;
 }
 
 nav ul li a:hover {
@@ -290,14 +293,86 @@ footer {
 
 /* Add styles for the dark mode toggle button */
 #dark-mode-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     color: var(--header-text);
     font-size: 1.2rem;
     cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+/* Add hamburger menu for mobile */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--header-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: relative;
+        z-index: 1002;
+    }
+
+    nav ul {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: var(--header-bg);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 4rem;
+        transition: left 0.3s ease;
+        z-index: 1001;
+    }
+
+    nav ul.active {
+        left: 0;
+    }
+
+    nav ul li {
+        margin: 1rem 0;
+    }
+
+    nav ul li a {
+        font-size: 1.1rem;
+    }
+
+    #dark-mode-toggle {
+        right: 1rem;
+    }
+
+    main {
+        padding-top: 4rem;
+    }
+}
+
+/* Add styles for smaller screens */
+@media screen and (max-width: 480px) {
+    nav ul {
+        width: 100%;
+    }
+
+    nav ul li a {
+        font-size: 1rem;
+    }
 }
 
 /* Add these new styles to your existing CSS file */
