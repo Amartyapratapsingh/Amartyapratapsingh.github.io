@@ -7,6 +7,30 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --primary-color: #4a90e2;
+            --secondary-color: #357abd;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --primary-color: #4a90e2;
+            --secondary-color: #357abd;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
         .download-container {
             max-width: 800px;
             margin: 50px auto;
@@ -16,6 +40,14 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
+        .game-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
         .magnet-link {
             background-color: var(--bg-primary);
             padding: 15px;
@@ -23,21 +55,32 @@
             margin: 20px 0;
             word-break: break-all;
             font-family: monospace;
+            position: relative;
         }
 
         .copy-btn {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: 25px;
             cursor: pointer;
             margin: 10px 0;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
         }
 
         .copy-btn:hover {
             background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .copy-btn i {
+            font-size: 1.1em;
         }
 
         .requirements {
@@ -58,6 +101,7 @@
             margin-bottom: 10px;
             padding-left: 20px;
             position: relative;
+            color: var(--text-secondary);
         }
 
         .requirements li::before {
@@ -65,6 +109,29 @@
             position: absolute;
             left: 0;
             color: var(--primary-color);
+        }
+
+        #dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        #dark-mode-toggle:hover {
+            transform: scale(1.1);
+            background-color: var(--secondary-color);
         }
     </style>
 </head>
@@ -75,17 +142,26 @@
                 <li><a href="index.html">Home</a></li>
             </ul>
         </nav>
+        <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
     </header>
 
     <main>
         <div class="download-container">
             <h2>GTA 5 Download</h2>
             
+            <!-- Add your GTA 5 image here -->
+            <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png" alt="Grand Theft Auto V" class="game-image">
+            
             <h3>Magnet Link</h3>
             <div class="magnet-link" id="magnetLink">
                 magnet:?xt=urn:btih:108A48777BABC58F8A3858FF0C355A48CCC5B0A1&dn=Grand+Theft+Auto+V+%2F+GTA+5+v1.0.877.1%2Fv1.36+%28Ultra+Repack+2.1&tr=udp%3A%2F%2F9.rarbg.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337%2Fannounce&tr=udp%3A%2F%2Fthetracker.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.aletorrenty.pl%3A2710%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentor.org%3A2710&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounce&tr=http%3A%2F%2Fannounce.torrentsmd.com%3A8080%2Fannounce&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce
             </div>
-            <button class="copy-btn" onclick="copyMagnetLink()">Copy Magnet Link</button>
+            <button class="copy-btn" onclick="copyMagnetLink()">
+                <i class="far fa-copy"></i>
+                <span>Copy Magnet Link</span>
+            </button>
 
             <div class="requirements">
                 <h3>Minimum System Requirements</h3>
@@ -106,14 +182,40 @@
     </footer>
 
     <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            htmlElement.setAttribute('data-theme', 'dark');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            if (htmlElement.getAttribute('data-theme') === 'dark') {
+                htmlElement.removeAttribute('data-theme');
+                localStorage.setItem('darkMode', 'disabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                htmlElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('darkMode', 'enabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+
+        // Copy magnet link functionality
         function copyMagnetLink() {
             const magnetLink = document.getElementById('magnetLink').textContent;
             navigator.clipboard.writeText(magnetLink.trim())
                 .then(() => {
                     const btn = document.querySelector('.copy-btn');
-                    btn.textContent = 'Copied!';
+                    const originalContent = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                    btn.style.backgroundColor = '#28a745';
                     setTimeout(() => {
-                        btn.textContent = 'Copy Magnet Link';
+                        btn.innerHTML = originalContent;
+                        btn.style.backgroundColor = '';
                     }, 2000);
                 })
                 .catch(err => {
